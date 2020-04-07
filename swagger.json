@@ -1,0 +1,147 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Task's CRUD using Node.js and Express.js",
+    "description": "User's CRUD using Node.js and Express.js",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:4000",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "task",
+      "description": "API for users in the system"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/tasks/": {
+      "post": {
+        "tags": ["Task"],
+        "summary": "Create new task in system",
+        "parameters": [
+          {
+            "name": "task",
+            "in": "body",
+            "description": "Task that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New task is created",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Task"],
+        "summary": "Get all task in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Tasks"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update task with given ID",
+        "tags": ["Tasks"],
+        "parameters": [
+          {
+            "name": "task",
+            "in": "body",
+            "description": "Task with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task is updated",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          }
+        }
+      }
+    },
+    "/tasks/{taskId}": {
+      "parameters": [
+        {
+          "name": "taskId",
+          "in": "path",
+          "required": true,
+          "description": "ID of task that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["Task"],
+        "summary": "Get task by id",
+        "responses": {
+          "200": {
+            "description": "Task is found",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete task with given ID",
+        "tags": ["Tasks"],
+        "parameters": [
+          {
+            "name": "task",
+            "description": "Task deleted"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task is Deleted"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Task": {
+      "required": ["id", "title", "details"],
+      "properties": {
+        "id": {
+          "type": "int",
+          "uniqueItems": true
+        },
+        "title": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "details": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "dueDate": {
+          "type": "datetime"
+        },
+        "state": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
