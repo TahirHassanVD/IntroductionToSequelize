@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test-dev": "jest ./test/."
   },
   "keywords": [],
   "author": "",
@@ -17,5 +17,8 @@
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.5",
     "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {
+    "jest": "^25.2.7"
   }
 }
